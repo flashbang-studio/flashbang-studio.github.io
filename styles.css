@@ -387,16 +387,27 @@ h1 {
 }
 
 .service-card {
+  position: relative;
   min-height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 18px;
   background: rgba(11, 13, 9, 0.96);
   padding: clamp(22px, 3vw, 32px);
   outline: none;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
   overflow: hidden;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(164, 255, 0, 0.75), transparent 80%);
+  opacity: 0;
+  transition: opacity 180ms ease;
 }
 
 .service-card:hover,
@@ -408,15 +419,10 @@ h1 {
   transform: translateY(-10px);
 }
 
-.service-card span {
-  color: var(--acid);
-  font-weight: 900;
-}
-
-.service-card:hover span,
-.service-card:focus span,
-.service-card:focus-visible span {
-  color: var(--black);
+.service-card:hover::before,
+.service-card:focus::before,
+.service-card:focus-visible::before {
+  opacity: 1;
 }
 
 .service-card h3 {
